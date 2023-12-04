@@ -2,7 +2,7 @@
   "name": "spareparts-inventory",
   "version": "1.0.0",
   "description": "building with express and mongodb",
-  "main": "main.js",
+  "main": "src/main.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "nodemon main.js"
@@ -18,13 +18,10 @@
   },
   "homepage": "https://github.com/rifkyhilman/spareparts-inventory#readme",
   "dependencies": {
+    "cors": "^2.8.5",
     "dotenv": "^16.3.1",
-    "ejs": "^3.1.9",
     "express": "^4.18.2",
-    "express-session": "^1.17.3",
-    "gitmoji-cli": "^9.0.0",
-    "mongoose": "^8.0.2",
-    "multer": "^1.4.5-lts.1"
+    "prisma": "^5.6.0"
   },
   "devDependencies": {
     "nodemon": "^3.0.2"
