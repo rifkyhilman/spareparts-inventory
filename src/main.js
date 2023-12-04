@@ -21,7 +21,7 @@ app.get('/products', async(req, res) => {
 });
 
 app.post('/products', async(req, res) => {
-   const newDataProducts = req.body;
+    const newDataProducts = req.body;
    
     const product = await prisma.product.create({
         data: {
@@ -37,6 +37,18 @@ app.post('/products', async(req, res) => {
         data: product
     })
 });
+
+app.delete('/products/:id', async(req, res) => {
+    const idProduct = req.params.id;
+
+    await prisma.product.delete({
+        where : {
+                id : parseInt(idProduct), 
+            },
+        });
+    
+    res.send("product deleted")
+})
 
 app.listen(PORT, ()=>{
     console.log(`server is runing at port : ${PORT}`)
