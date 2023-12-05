@@ -20,6 +20,18 @@ app.get('/products', async(req, res) => {
     res.send(products);
 });
 
+app.get('/products/:id', async(req, res) => {
+    const productId = req.params.id;
+
+    const product = await prisma.product.findUnique({
+        where: {
+            id: parseInt(productId),
+        },
+    });
+
+    res.send(product)
+});
+
 app.post('/products', async(req, res) => {
     const newDataProducts = req.body;
    
@@ -39,17 +51,62 @@ app.post('/products', async(req, res) => {
 });
 
 app.delete('/products/:id', async(req, res) => {
-    const idProduct = req.params.id;
+    const productId = req.params.id; // String
 
     await prisma.product.delete({
-        where : {
-                id : parseInt(idProduct), 
+        where: {
+                id: parseInt(productId), // change string to integer
             },
         });
     
     res.send("product deleted")
+});
+
+
+app.put('/products/:id', async(req, res) => {
+    const productId = req.params.id;
+    const productData = req.body;
+    
+    const product = await prisma.product.update({
+        where: {
+            id: parseInt(productId),
+        },
+        data: {
+            description: productData.description,
+            image: productData.image,
+            name: productData.name,
+            price: productData.price,
+        },
+    })
+
+    res.send({
+        data: product,
+        message: "edit product success !"
+    })
+});
+
+app.patch('/products/:id', async(req, res) => {
+    const productId = req.params.id;
+    const productData = req.body;
+    
+    const product = await prisma.product.update({
+        where: {
+            id: parseInt(productId),
+        },
+        data: {
+            description: productData.description,
+            image: productData.image,
+            name: productData.name,
+            price: productData.price,
+        },
+    })
+
+    res.send({
+        data: product,
+        message: "edit product success !"
+    })
 })
 
-app.listen(PORT, ()=>{
+app.listen(PORT, () => {
     console.log(`server is runing at port : ${PORT}`)
   });
