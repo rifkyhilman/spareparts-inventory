@@ -5,7 +5,8 @@ const router = express.Router();
 router.get('/', (req, res) => {
 
     res.render('Home.ejs', {
-        nama: "Rifki"
+        nama: "Rifki",
+        title: "Halaman Home"
     });
 });
 
