@@ -15,9 +15,12 @@ Package/Modules :-
 3. EJS (Embedded Javascript Templating Engine View)
 4. Dotenv (Environment Variables)
 5. Nodemon (Monitoring Server)
+6. Express Session (Storing Sessions Messages)
+7. Multer (Image Uploading)
 
 Frontend Library :-
 --------------------------
 1. Bootstrap 5 (Designing)
 2. Fontawesome (Icons)
+3. DataTable (Pagination, Sorting etc.)
 
