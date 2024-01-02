@@ -21,6 +21,6 @@ Package/Modules :-
 Frontend Library :-
 --------------------------
 1. Bootstrap 5 (Designing)
-2. Bootstrap icons (Icons)
+2. Boxicons (Icons)
 3. DataTable (Pagination, Sorting etc.)
 
