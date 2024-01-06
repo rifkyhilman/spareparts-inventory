@@ -1,13 +1,19 @@
-const router = require("express").Router();
+  const router = require("express").Router();
 
+const { getAllProducts } = require('./product/product.service');
 
-router.get('/', (req, res) => {
+router.get('/', async (req, res) => {
+
+    const products = await getAllProducts();
+
     res.render('home.ejs', {
-        title: "Home Page"
+        title: "Home Page",
+        data: products
     })
 });
 
 router.get('/add', (req, res) => {
+    
     res.render('add_users.ejs', {
         title: "Add Users"
     })
