@@ -12,7 +12,7 @@ router.get('/', async (req, res) => {
     })
 });
 
-router.get('/add', (req, res) => {
+router.post('/add', (req, res) => {
     
     res.render('add_users.ejs', {
         title: "Add Users"
