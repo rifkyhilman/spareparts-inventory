@@ -1,14 +1,8 @@
 const express = require('express');
 
-const { getAllProducts, getProductById, createProduct, deletProductById, editProductById } = require('./product.service');
+const { getProductById, createProduct, deletProductById, editProductById } = require('./product.service');
 
 const router = express.Router();
-
-router.get('/', async(req, res) => {
-    const products = await getAllProducts();
-
-    res.send(products);
-});
 
 router.get('/:id', async(req, res) => {
     try {
@@ -23,27 +17,31 @@ router.get('/:id', async(req, res) => {
     }
 });
 
-router.post('/', async(req, res) => {
+router.post('/add', async(req, res) => {
     try {
         const newProductData = req.body;
        
         const product = await createProduct(newProductData)
-        res.send({
+        res.session.message = {
             message: "Create Product Success",
             data: product
-        });
+        };
+        res.redirect('/');
     } catch (err) {
-        res.status(400).send(err.message);
+        res.json({
+            message: err.message,
+            type: "danger"
+        });
     }
 });
 
-router.delete('/:id', async(req, res) => {
+router.get('/delete/:id', async(req, res) => {
     try {
         const productId = req.params.id; // String
     
         await deletProductById(parseInt(productId));
         
-        res.send("product deleted")
+        res.redirect('/');
         
     } catch (err) {
         res.status(400).send(err.message);

@@ -11,19 +11,19 @@
               <form action="/products/add" method="post" id="add-form" enctype="multipart/form-data">
                 <div class="mb-3 mt-5">
                   <label for="name">Name Product</label>
-                  <input type="text" name="name" class="form-control form-control-lg" placeholder="Enter Name Product" required>
+                  <input id="name" type="text" name="name" class="form-control form-control-lg" placeholder="Enter Name Product" required>
                 </div>
                 <div class="mb-3">
                   <label for="description">Description</label>
-                  <input type="text" name="description" class="form-control form-control-lg" placeholder="Enter Description" required>
+                  <input id="description" type="text" name="description" class="form-control form-control-lg" placeholder="Enter Description" required>
                 </div>
                 <div class="mb-3">
                   <label for="price">Price</label>
-                  <input type="number" name="price" class="form-control form-control-lg" placeholder="Enter Price" required>
+                  <input id="price" type="number" name="price" class="form-control form-control-lg" placeholder="Enter Price" required>
                 </div>
                 <div class="mb-3">
                   <label for="image">Select Image</label>
-                  <input type="file" name="price" class="form-control form-control-lg" placeholder="Enter Image" required>
+                  <input id="image" type="file" name="image" class="form-control form-control-lg" placeholder="Enter Image" required>
                 </div>
                 <div class="mb-3 d-grid">
                   <input type="submit" name="submit" value="Add Products" class="btn btn-primary btn-lg">
