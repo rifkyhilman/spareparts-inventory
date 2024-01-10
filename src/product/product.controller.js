@@ -13,7 +13,7 @@ var Storage = multer.diskStorage({
         cb(null, path.join(__dirname, "../uploads"));
     },
     filename: function (req, file, cb) {
-        cb(null, file.fieldname + "_" + Date.now() + "_" + path.extname(file.originalname));
+        cb(null, file.fieldname + "_" + Date.now() + "_" + file.originalname);
     },
 });
 
@@ -41,14 +41,9 @@ router.post('/add', upload, async(req, res) => {
     try {
         
         const newProductData = {
-            name: req.body.name,
-            description: req.body.description,
-            price: req.body.price,
-            image: req.file.filename,
+            ...req.body,
+            ...req.file,
         };
-
-        
-        console.log(newProductData);
 
         const product = await createProduct(newProductData);
 
@@ -56,7 +51,11 @@ router.post('/add', upload, async(req, res) => {
             type: "success",
             message: "User added successfully!",
         };
-        res.send(product);
+
+        res.send({
+            data: product,
+        })
+
         res.redirect('/');
     } catch (err) {
         res.json({

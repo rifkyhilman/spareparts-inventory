@@ -2,33 +2,35 @@
 require("dotenv").config();
 const express = require("express");
 const session = require("express-session");
-const path = require('path');
+const path = require("path");
 const app = express();
 
 const PORT = process.env.PORT || 4000;
 
 // set tempalate engine
-app.set('view engine', 'ejs');
-app.set('views', path.join(__dirname, 'views'))
+app.set("view engine", "ejs");
+app.set("views", path.join(__dirname, "views"))
 
 app.use(express.urlencoded({extended: true}));
 app.use(express.json());
+app.use(express.static(path.join(__dirname, "./uploads")));
+
 
 // use bootstrap
-app.use('/css', express.static(path.join(__dirname, '../node_modules/bootstrap/dist/css')))
-app.use('/js', express.static(path.join(__dirname, '../node_modules/bootstrap/dist/js')))
-app.use("/icons", express.static(path.join(__dirname, '../node_modules/boxicons')));
+app.use("/css", express.static(path.join(__dirname, "../node_modules/bootstrap/dist/css")))
+app.use("/js", express.static(path.join(__dirname, "../node_modules/bootstrap/dist/js")))
+app.use("/icons", express.static(path.join(__dirname, "../node_modules/boxicons")));
 
 
 // route prefix
-app.use('/', require("./routes"));
-app.use('/products', require("./product/product.controller"));  
+app.use("/", require("./routes"));
+app.use("/products", require("./product/product.controller"));  
 
 
 // middlewares
 app.use(
   session({
-    secret: 'my secret key',
+    secret: "my secret key",
     saveUninitialized: true,
     resave: false,
   })
