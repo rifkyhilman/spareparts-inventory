@@ -18,12 +18,7 @@ const findProductById = async(id) => {
 
 const insertProduct = async(productData) => {
     const product = await prisma.product.create({
-        data: {
-            name: productData.name,
-            description: productData.description,
-            price: productData.price,
-            image: productData.image,
-        },
+        data: productData,
     });
 
     return product;
