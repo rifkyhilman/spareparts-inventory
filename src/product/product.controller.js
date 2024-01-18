@@ -45,18 +45,15 @@ router.post('/add', upload, async(req, res) => {
             ...req.file,
         };
 
-        const product = await createProduct(newProductData);
+        await createProduct(newProductData);
 
-        res.session.message = {
+        req.session.message = {
             type: "success",
-            message: "User added successfully!",
+            message: "Product added successfully!",
         };
 
-        res.send({
-            data: product,
-        })
-
         res.redirect('/');
+
     } catch (err) {
         res.json({
             message: err.message,
